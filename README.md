@@ -19,7 +19,7 @@ Mask Detection System
 
 -   Inside backend folder run following commands:
     `pip install`
-    `python run main.oy`
+    `python run main.py`
 -   Inside frontend folder run following commands:
     `npm install`
     `npm run prod`
