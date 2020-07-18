@@ -1,0 +1,19 @@
+{
+  "name": "watchmask",
+  "version": "0.0.1",
+  "description": "Frontend of WatchMask, A Mask Detection App",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aasid/WatchMask.git"
+  },
+  "author": "Siddharth S Kumar",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Aasid/WatchMask/issues"
+  },
+  "homepage": "https://github.com/Aasid/WatchMask#readme"
+}
