@@ -1,19 +1,57 @@
 {
-  "name": "watchmask",
-  "version": "0.0.1",
-  "description": "Frontend of WatchMask, A Mask Detection App",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Aasid/WatchMask.git"
-  },
-  "author": "Siddharth S Kumar",
-  "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/Aasid/WatchMask/issues"
-  },
-  "homepage": "https://github.com/Aasid/WatchMask#readme"
+	"name": "watchmask-ui",
+	"version": "0.0.1",
+	"description": "Webpack project setup. Including file, folder structure.",
+	"main": "index.js",
+	"scripts": {
+		"webpack-dev-server": "webpack-dev-server",
+		"webpack": "webpack",
+		"prod": "npm run webpack -- --env.mode production",
+		"dev": "npm run webpack-dev-server -- --env.mode development --watch"
+	},
+	"keywords": [
+		"webpack",
+		"react",
+		"sass"
+	],
+	"author": "Siddharth S Kumar",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.5.5",
+		"@babel/plugin-proposal-class-properties": "^7.5.5",
+		"@babel/polyfill": "^7.4.4",
+		"@babel/preset-env": "^7.5.5",
+		"@babel/preset-react": "^7.0.0",
+		"babel-loader": "^8.0.6",
+		"babel-plugin-transform-runtime": "^6.23.0",
+		"babel-polyfill": "^6.26.0",
+		"clean-webpack-plugin": "^3.0.0",
+		"css-loader": "^3.1.0",
+		"file-loader": "^4.1.0",
+		"html-webpack-plugin": "^3.2.0",
+		"mini-css-extract-plugin": "^0.8.0",
+		"node-sass": "^4.12.0",
+		"pug": "^2.0.4",
+		"pug-loader": "^2.4.0",
+		"react-hot-loader": "^4.12.12",
+		"react-router-dom": "^5.0.1",
+		"sass-loader": "^7.1.0",
+		"style-loader": "^0.23.1",
+		"url-loader": "^2.1.0",
+		"webpack": "^4.39.1",
+		"webpack-cli": "^3.3.6",
+		"webpack-dev-server": "^3.7.2",
+		"webpack-merge": "^4.2.1"
+	},
+	"dependencies": {
+		"@babel/plugin-proposal-export-default-from": "^7.5.2",
+		"axios": "^0.19.0",
+		"lodash": "^4.17.15",
+		"qs": "^6.8.0",
+		"react": "^16.8.6",
+		"react-custom-scrollbars": "^4.2.1",
+		"react-datepicker": "^2.9.6",
+		"react-dom": "^16.8.6",
+		"react-webcam": "^4.0.0"
+	}
 }
