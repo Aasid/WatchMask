@@ -4,10 +4,10 @@ Mask Detection System
 
 ## Table of content 📑
 
--   [How it works](# How it works)
--   [How to use](# How to use)
--   [Setup](# Setup)
--   [License](# License)
+-   [How it works](#How it works)
+-   [How to use](#How to use)
+-   [Setup](#Setup)
+-   [License](#License)
 
 ## How it works ⚗️
 
