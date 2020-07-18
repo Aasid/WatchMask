@@ -11,6 +11,19 @@ Mask Detection System
 
 ## How it works ⚗️
 
+-   Person stands in front of the camera
+-   Camera feed is processed by Machine Learning Model.
+-   If mask is detected appropriate changes are rendered on screen.
+
 ## Setup 🛠️
 
+-   Inside backend folder run following commands:
+    `pip install`
+    `python run main.oy`
+-   Inside frontend folder run following commands:
+    `npm install`
+    `npm run prod`
+
 ## License 📃
+
+-   Code : (BSD-2)[https://choosealicense.com/licenses/bsd-2-clause/]
