@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Overlay from './Overlay';
 import Webcam from 'react-webcam';
+
 const videoConstraints = {
 	width: 1280,
 	height: 720,
