@@ -1,0 +1,6 @@
+opencv_contrib_python==4.1.2.30
+Flask_SocketIO==4.3.0
+Flask==1.0.2
+tensorflow==2.2.0
+numpy==1.17.0
+Flask_Cors==3.0.8
