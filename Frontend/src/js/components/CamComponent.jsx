@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import Overlay from './Overlay';
 import Webcam from 'react-webcam';
 
+<<<<<<< HEAD
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
+=======
+>>>>>>> d3629bad55af387ba7652dca48cbd3842df1d543
 const videoConstraints = {
 	width: vw,
 	height: vh,
