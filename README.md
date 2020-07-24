@@ -26,4 +26,4 @@ Mask Detection System
 
 ## License 📃
 
--   Code : (BSD-2)[https://choosealicense.com/licenses/bsd-2-clause/]
+-   Code : [BSD-2](https://choosealicense.com/licenses/bsd-2-clause/)
