@@ -21,6 +21,8 @@ def live_feed():
     while True:
         # read the camera frame
         success, frame = cap.read()
+        frame=cv2.resize(frame,(720,1280))
+
         (H, W) = frame.shape[:2]
         # if frame is not empty
         if(success):
@@ -33,18 +35,18 @@ def live_feed():
                 #if a person is  wearing mask emit true
                 if(labels[0]=="mask"):
                     print("Person is wearing mask")
-                    socketio.emit('maskDetection', {'mask_detected': True})
+                    socketio.emit('maskDetection', {'mask_detected': True,'bb':bboxes[0]})
                 #if a person is not wearing mask emit flase
                 else:
                     print("Person not wearing mask")
-                    socketio.emit('maskDetection', {'mask_detected': False})
+                    socketio.emit('maskDetection', {'mask_detected': False,'bb':bboxes[0]})
 
                 # draw bounding box
                 x1,y1,x2,y2=bboxes[0]
                 cv2.rectangle(frame, (x1, y1),(x2, y2), (255,0,0), 2)
             cv2.rectangle(frame, ( W//3,H//3),((W//3)+(W//3),(H//3)+(H//3)), (0,255,0), 2)
         # show the output frame
-        # frame=cv2.resize(frame,(640,480))
+        frame=cv2.resize(frame,(640,480))
         cv2.imshow("Frame", frame)
         key = cv2.waitKey(1) & 0xFF
 

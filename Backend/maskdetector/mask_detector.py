@@ -44,6 +44,7 @@ class MaskDetector:
         # load the input image from disk, clone it, and grab the image spatial
         # dimensions
         image = img
+        image=cv2.resize(image,(720,1280))
         orig = image.copy()
         (h, w) = image.shape[:2]
 
