@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
+import Canvas from './Canvas';
 
 class Overlay extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { acess: false };
+		this.state = { recieved: false, detection: false };
 		this.resultString = '';
 	}
 	render() {
-		if (this.state.acess) {
-			this.resultString = 'Proceed';
-		} else {
-			this.resultString = 'Denied';
+		let element = 'hello!';
+		if (this.state.recieved && this.state.detection) {
+			element = 'True';
+		}
+		if (this.state.recieved && this.state.detection == false) {
+			element = 'False';
 		}
 		return (
 			<div className="overlay">
-				<div className="overlayItemContainer">
-					<div className="overlayItem">
-						<span>{this.resultString}</span>
-					</div>
-				</div>
+				{element}
+				<Canvas />
 			</div>
 		);
 	}

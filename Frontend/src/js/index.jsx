@@ -13,6 +13,7 @@ ReactDOM.render(
 			className="marqueeContainer"
 			style={{
 				width: vw,
+
 				whiteSpace: 'nowrap',
 			}}
 		>

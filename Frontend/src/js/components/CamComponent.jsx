@@ -6,8 +6,8 @@ const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
 
 const videoConstraints = {
-	width: vw,
-	height: vh,
+	height: 1280,
+	width: 720,
 	facingMode: 'user',
 };
 
