@@ -16,6 +16,7 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 mask_detector = MaskDetector()
 
 
+
 def live_feed():
     # load the video stream
     cap = cv2.VideoCapture(0)
@@ -54,7 +55,11 @@ def live_feed():
         if key == ord("q"):
             break
 
-
+@socketio.on('connect')
+def connected():
+    print('connected')
+    live_feed()
+    
+    
 if __name__ == '__main__':
     socketio.run(app, host=None, port='8756')
-    live_feed()
