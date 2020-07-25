@@ -9,7 +9,7 @@ const io = require('socket.io')(server);
 var socket = require('socket.io-client')('ws://localhost:8756');
 
 socket.on('connect', function () {
-	console.log('connected!');
+	socket.emit('feed', 'initiate');
 });
 socket.on('event', function (data) {});
 socket.on('disconnect', function () {
