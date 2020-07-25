@@ -62,11 +62,6 @@ def live_feed():
         if key == ord("q"):
             break
 
-# @socketio.on('connect')
-# def connected():
-#     print('connected')
-#     live_feed()
-
 
 @socketio.on('feed')
 def initiate(data):

@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import socketIOClient from 'socket.io-client';
+const ENDPOINT = 'http://127.0.0.1:9000';
 
 function Canvas() {
+	const socket = socketIOClient(ENDPOINT);
+	socket.on('FromAPI', (data) => {
+		console.log(data);
+	});
+
 	let xCoordinate = useState(200);
 	let yCoordinate = useState(220);
 	useEffect(() => {
