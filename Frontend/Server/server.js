@@ -5,13 +5,21 @@ const path = require('path');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
+var iot = require('socket.io-client')
 
-var socket = require('socket.io-client')('ws://localhost:8756');
+// var socket = require('socket.io-client')('ws://localhost:8756');
+const socket = iot("http://localhost:8756");
 
 socket.on('connect', function () {
+	console.log("connected")
 	socket.emit('feed', 'initiate');
 });
-socket.on('event', function (data) {});
+socket.on('event', function () {
+	console.log("event")
+});
+socket.on("maskDetection", (data) => {
+	console.log(data.mask_detected);
+  });
 socket.on('disconnect', function () {
 	console.log('disconnected!');
 });

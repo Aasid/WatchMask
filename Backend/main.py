@@ -26,6 +26,7 @@ def live_feed():
         (H, W) = frame.shape[:2]
         # if frame is not empty
         if(success):
+
             # pass frame to mask_detector and return labels and corresponding bounding boxes
             labels, bboxes = mask_detector.detect(frame)
             print(bboxes)
@@ -35,11 +36,15 @@ def live_feed():
                 # if a person is  wearing mask emit true
                 if(labels[0] == "mask"):
                     print("Person is wearing mask")
-                    socketio.emit('maskDetection', {'mask_detected': True})
+                    socketio.emit('maskDetection', {'mask_detected': True,'bb':bboxes[0]})
+                    socketio.sleep(0.000001)
+
                 # if a person is not wearing mask emit flase
                 else:
                     print("Person not wearing mask")
-                    socketio.emit('maskDetection', {'mask_detected': False})
+                    socketio.emit('maskDetection', {'mask_detected': False,'bb':bboxes[0]})
+                    socketio.sleep(0.000001)
+
 
                 # draw bounding box
                 x1, y1, x2, y2 = bboxes[0]
@@ -55,11 +60,15 @@ def live_feed():
         if key == ord("q"):
             break
 
-@socketio.on('connect')
-def connected():
-    print('connected')
+# @socketio.on('connect')
+# def connected():
+#     print('connected')
+#     live_feed()
+    
+@socketio.on('feed')
+def initiate(data):
+    print(data)
     live_feed()
     
-    
 if __name__ == '__main__':
-    socketio.run(app, host=None, port='8756')
+    socketio.run(app, host=None, port=8756)
