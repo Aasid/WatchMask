@@ -38,14 +38,14 @@ def live_feed():
                 if(labels[0] == "mask"):
                     print("Person is wearing mask")
                     socketio.emit('maskDetection', {
-                                  'mask_detected': True, 'bb': str(bboxes[0])})
+                                'mask_detected': True, 'bb': str(bboxes[0])})
                     socketio.sleep(0.000001)
 
                 # if a person is not wearing mask emit flase
                 else:
                     print("Person not wearing mask")
                     socketio.emit('maskDetection', {
-                                  'mask_detected': False, 'bb': str(bboxes[0])})
+                                'mask_detected': False, 'bb': str(bboxes[0])})
                     socketio.sleep(0.000001)
 
                 # draw bounding box
