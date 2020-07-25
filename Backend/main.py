@@ -23,6 +23,7 @@ def live_feed():
     while True:
         # read the camera frame
         success, frame = cap.read()
+        frame=cv2.resize(frame,(720,1280))
         (H, W) = frame.shape[:2]
         # if frame is not empty
         if(success):
