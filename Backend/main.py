@@ -37,13 +37,13 @@ def live_feed():
                 # if a person is  wearing mask emit true
                 if(labels[0] == "mask"):
                     print("Person is wearing mask")
-                    socketio.emit('maskDetection', {'mask_detected': True,'bb':bboxes[0]})
+                    socketio.emit('maskDetection', {'mask_detected': True,'bb':str(bboxes[0])})
                     socketio.sleep(0.000001)
 
                 # if a person is not wearing mask emit flase
                 else:
                     print("Person not wearing mask")
-                    socketio.emit('maskDetection', {'mask_detected': False,'bb':bboxes[0]})
+                    socketio.emit('maskDetection', {'mask_detected': False,'bb':str(bboxes[0])})
                     socketio.sleep(0.000001)
 
 
@@ -53,7 +53,7 @@ def live_feed():
             cv2.rectangle(frame, (W//3, H//3), ((W//3)+(W//3),
                                                 (H//3)+(H//3)), (0, 255, 0), 2)
         # show the output frame
-        # frame=cv2.resize(frame,(640,480))
+        frame=cv2.resize(frame,(640,480))
         cv2.imshow("Frame", frame)
         key = cv2.waitKey(1) & 0xFF
 
