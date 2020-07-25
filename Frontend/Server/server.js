@@ -4,13 +4,17 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const server = require('http').Server(app);
-const io = require('socket.io')(server);
 
 var socket = require('socket.io-client')('ws://localhost:8756');
 
 socket.on('connect', function () {
 	socket.emit('feed', 'initiate');
 });
+
+socket.on('emit', function (data) {
+	console.log(data);
+});
+
 socket.on('event', function (data) {});
 socket.on('disconnect', function () {
 	console.log('disconnected!');
@@ -25,10 +29,6 @@ app.use(express.json({ extended: false }));
 io.on('maskDetection', function (socket) {
 	socket.emit('announcements', { message: 'A new connection made!' });
 });
-
-// app.get('/', (req, res) => {
-// 	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-// });
 
 // Configuring Host and Port.
 const PORT = process.env.PORT || 9000;

@@ -20,6 +20,7 @@ def live_feed():
     # load the video stream
     cap = cv2.VideoCapture(0)
     while True:
+
         # read the camera frame
         success, frame = cap.read()
         (H, W) = frame.shape[:2]
