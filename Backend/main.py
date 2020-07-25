@@ -16,14 +16,14 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 mask_detector = MaskDetector()
 
 
-
 def live_feed():
     # load the video stream
     cap = cv2.VideoCapture(0)
     while True:
+
         # read the camera frame
         success, frame = cap.read()
-        frame=cv2.resize(frame,(720,1280))
+        frame = cv2.resize(frame, (720, 1280))
         (H, W) = frame.shape[:2]
         # if frame is not empty
         if(success):
@@ -37,15 +37,16 @@ def live_feed():
                 # if a person is  wearing mask emit true
                 if(labels[0] == "mask"):
                     print("Person is wearing mask")
-                    socketio.emit('maskDetection', {'mask_detected': True,'bb':str(bboxes[0])})
+                    socketio.emit('maskDetection', {
+                                  'mask_detected': True, 'bb': str(bboxes[0])})
                     socketio.sleep(0.000001)
 
                 # if a person is not wearing mask emit flase
                 else:
                     print("Person not wearing mask")
-                    socketio.emit('maskDetection', {'mask_detected': False,'bb':str(bboxes[0])})
+                    socketio.emit('maskDetection', {
+                                  'mask_detected': False, 'bb': str(bboxes[0])})
                     socketio.sleep(0.000001)
-
 
                 # draw bounding box
                 x1, y1, x2, y2 = bboxes[0]
@@ -61,6 +62,7 @@ def live_feed():
         # # show the output frame
         # cv2.imshow("Frame", frame)
         # key = cv2.waitKey(1) & 0xFF
+
 
         # # if the `q` key was pressed, break from the loop
         # if key == ord("q"):
@@ -82,5 +84,6 @@ def video_feed():
     return Response(live_feed(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
     
+
 if __name__ == '__main__':
     socketio.run(app, host=None, port=8756)

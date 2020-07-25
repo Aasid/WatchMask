@@ -2,39 +2,47 @@ require('dotenv').config();
 var cors = require('cors');
 const express = require('express');
 const path = require('path');
+const http = require('http');
 const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const server = http.createServer(app);
+const socketio = require('socket.io');
+
+const io = socketio(server);
+
+io.on('connection', (socket) => {
+	console.log('New client connected');
+
+	socket.on('disconnect', () => {
+		console.log('Client disconnected');
+		clearInterval(interval);
+	});
+});
 
 var socket = require('socket.io-client')('ws://localhost:8756');
 
 socket.on('connect', function () {
-	console.log("connected")
 	socket.emit('feed', 'initiate');
 });
-socket.on('event', function () {
-	console.log("event")
-});
-socket.on("maskDetection", (data) => {
+
+socket.on('emit', function (data) {
 	console.log(data);
-  });
+});
+
+socket.on('event', function (data) {});
 socket.on('disconnect', function () {
 	console.log('disconnected!');
 });
 
+socket.on('maskDetection', function (data) {
+	console.log(data);
+	socket.emit('FromAPI', data);
+});
+
 // Init Middleware
-app.use(express.static('client/dist'));
+app.use(express.static('../dist/'));
 app.use('/alerts', express.static('public/alerts'));
 app.use(cors());
 app.use(express.json({ extended: false }));
-
-io.on('maskDetection', function (socket) {
-	socket.emit('announcements', { message: 'A new connection made!' });
-});
-
-// app.get('/', (req, res) => {
-// 	res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
-// });
 
 // Configuring Host and Port.
 const PORT = process.env.PORT || 9000;
@@ -44,4 +52,4 @@ app.get('/**', (req, res) => {
 	res.redirect('/');
 });
 
-app.listen(PORT, HOST, () => console.log(`Server started running on : http://${HOST}:${PORT}`));
+server.listen(PORT, HOST, () => console.log(`Server started running on : http://${HOST}:${PORT}`));
