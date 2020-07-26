@@ -1,7 +1,7 @@
 # development
 import cv2
 from maskdetector.mask_detector import MaskDetector
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 from flask_socketio import SocketIO
 from flask_cors import CORS, cross_origin
 
@@ -38,14 +38,13 @@ def live_feed():
                 if(labels[0] == "mask"):
                     print("Person is wearing mask")
                     socketio.emit('maskDetection', {
-                                'mask_detected': True, 'bb': str(bboxes[0])})
-                    socketio.sleep(0.000001)
+                        'mask_detected': True, 'bb': str(bboxes[0])})
 
                 # if a person is not wearing mask emit flase
                 else:
                     print("Person not wearing mask")
                     socketio.emit('maskDetection', {
-                                'mask_detected': False, 'bb': str(bboxes[0])})
+                        'mask_detected': False, 'bb': str(bboxes[0])})
                     socketio.sleep(0.000001)
 
                 # draw bounding box
@@ -53,16 +52,15 @@ def live_feed():
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0), 2)
             cv2.rectangle(frame, (W//3, H//3), ((W//3)+(W//3),
                                                 (H//3)+(H//3)), (0, 255, 0), 2)
-            frame=cv2.resize(frame,(640,480))
+            frame = cv2.resize(frame, (640, 480))
             ret, buffer = cv2.imencode('.jpg', frame)
             frame = buffer.tobytes()
             yield (b'--frame\r\n'
-                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
-        
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
+
         # # show the output frame
         # cv2.imshow("Frame", frame)
         # key = cv2.waitKey(1) & 0xFF
-
 
         # # if the `q` key was pressed, break from the loop
         # if key == ord("q"):
@@ -72,18 +70,19 @@ def live_feed():
 # def connected():
 #     print('connected')
 #     live_feed()
-    
+
 # @socketio.on('feed')
 # def initiate(data):
 #     print(data)
 #     live_feed()
+
 
 @app.route('/video_feed')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(live_feed(),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-    
+
 
 if __name__ == '__main__':
     socketio.run(app, host=None, port=8756)

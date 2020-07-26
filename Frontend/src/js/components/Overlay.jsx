@@ -8,19 +8,14 @@ class Overlay extends Component {
 		this.resultString = '';
 	}
 	render() {
-		let element = 'hello!';
+		let element = '!';
 		if (this.state.recieved && this.state.detection) {
 			element = 'True';
 		}
 		if (this.state.recieved && this.state.detection == false) {
 			element = 'False';
 		}
-		return (
-			<div className="overlay">
-				{element}
-				<Canvas />
-			</div>
-		);
+		return <div className="overlay">{element}</div>;
 	}
 }
 
