@@ -1,0 +1,6 @@
+opencv-contrib-python
+Flask-SocketIO
+Flask
+tensorflow
+numpy
+Flask-Cors

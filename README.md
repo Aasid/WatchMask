@@ -18,12 +18,12 @@ Mask Detection System
 ## Setup 🛠️
 
 -   Inside backend folder run following commands:
-    `pip install`
-    `python run main.py`
+    `$ pip install -r requeriments.txt`
+    `$ python main.py`
 -   Inside frontend folder run following commands:
     `npm install`
     `npm run prod`
 
 ## License 📃
 
--   Code : (BSD-2)[https://choosealicense.com/licenses/bsd-2-clause/]
+-   Code : [BSD-2](https://choosealicense.com/licenses/bsd-2-clause/)

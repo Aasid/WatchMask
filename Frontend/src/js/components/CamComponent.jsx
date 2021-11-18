@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import Overlay from './Overlay';
 import Webcam from 'react-webcam';
 
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+
 const videoConstraints = {
-	width: 1280,
-	height: 720,
+	height: 1280,
+	width: 720,
 	facingMode: 'user',
 };
 
@@ -19,9 +22,7 @@ class CamComponent extends Component {
 			<div id="camComponent" className="camComponent">
 				<Webcam
 					audio={false}
-					height={720}
 					screenshotFormat="image/jpeg"
-					width={1280}
 					ref={this.webcamRef}
 					videoConstraints={videoConstraints}
 				/>
